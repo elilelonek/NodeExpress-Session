@@ -9,12 +9,10 @@ function CheckIfLogin(){
         data:{},
         success:function( result ){
             if(result.success){
-                $("#successLogin").show();
                 $('body').fadeOut(50, function(){
                     $('body')
                         .empty()
                         window.location.replace(result.redirect)
-                        $('#successLogin').remove();
                     })
             }
             else{
@@ -41,6 +39,7 @@ function login(){
         </button>
         </div>`
         showHideMessage(msg, true)
+        $("#failureLogin").show();
     }
     else{
     $.ajax({
@@ -57,10 +56,10 @@ function login(){
                         .empty()
                         window.location.replace(result.redirect)
                         .fadeIn(5000);
-                        $('#successLogin').remove();
                     })
             }
             else{
+                $("#failureLogin").show();
                 showHideMessage(result.message, true);
             }
         },
